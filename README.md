@@ -66,11 +66,14 @@ This assignment has three parts.
 I have created a repository at https://bitbucket.org/smymty/assignment1/. I added few PhP codes in this repository. 
 
 Your job is,
+
 * Clone this repository to your local machine
+
 * Create a new branch with branch name, \<your first name>_\<your last name>
+
 * There is a file named `sample.html` in your downloaded (or cloned) repository. Open that file, 
   
-```html class:"lineNo"
+```html
 1  <!DOCTYPE html>
 2  <html>
 3    <body>
@@ -82,13 +85,19 @@ Your job is,
 9     </body>
 10  </html>
 ```
-Add you name after line number 7, below my name, within a `<p>...</p>` tag, like 
+
+Add your name after line number 7, below my name, within a `<p>...</p>` tag, like 
+
 ```html
 8        <p> Your_First_Name Your_Last_Name> </p>
 ```
+
 * Checkout, Commit and Push to the original repository in BitBucket. 
+
 * You should find a new branch is created with your changes in the code. 
+
 * Create a [Pull Request](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests#)
+
 * Being the curator of this repository, I can merge all these changes together into the master branch. I will show that in the class. 
 
 #### Part 2:
