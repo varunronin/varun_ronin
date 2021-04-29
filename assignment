@@ -1,0 +1,26 @@
+Control Questionare:
+
+* Radio Button
+# Checkbox
+& textbox (text type)
+@ fileupload
+<tab> if the previous statement is answred
+
+
+Control: Threat Model
+
+1. Threat model is performed
+	A yes
+		@ artifact
+		i level-1 diagram is reviewed
+			a yes	
+			b no 	
+		ii All threats (Mitigated/Unmitigated) have been reviewed
+		
+	B no 
+
+2. 
+
+
+		
+		
