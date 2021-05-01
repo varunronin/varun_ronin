@@ -140,7 +140,7 @@ Running SonarQube or any other SAST tool is simple. It has two component,
 
 2. an *agent* installed at the local machine (developers local machine or the build server)
 
-We have set up a SonarQube server at XX.XX.XX.XX (Kindly check with Rahul for accessing this machine). Username and password will be sent to all of you. Create a project with projectname `<your first name>_<your last name>`.
+We have set up a SonarQube server at http://XX.XX.XX.XX:9000 (Kindly check with [Rahul Mohan](mailto:rahulm.cs@reva.edu.in) for accessing this machine). Username and password will be sent to all of you. Create a project with projectname `<your first name>_<your last name>`.
 Generate token
 
 The local agent is called SonarScanner. It has to be installed at your local machine. Download and configure/install the agent as described in the official [SonarScanner Documentation](https://docs.sonarqube.org/latest/analysis/scan/sonarscanner/).
