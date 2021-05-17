@@ -22,6 +22,9 @@ pipelines:
             - pipe: sonarsource/sonarcloud-scan:1.2.2
               variables:
                DEBUG: "true"
+               EXTRA_ARGS: -Dsonar.projectKey="maity_running_on_balaji"   -Dsonar.sources=.   -Dsonar.host.url="http://182.73.155.42:9000"   -Dsonar.login="b11d49de1f8e2fbdf842193c3aa14a145c7a8588"
+    SONAR_SCANNER_OPTS: -Xmx512m
+    DEBUG: "true"
 
     # The following deployment steps will be executed for each pipeline run. To configure your steps and conditionally deploy see https://support.atlassian.com/bitbucket-cloud/docs/configure-bitbucket-pipelinesyml/
     - step:
