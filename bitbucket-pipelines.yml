@@ -32,6 +32,7 @@ pipelines:
         trigger: 'manual'
         script:
           - echo "Your deployment to production script goes here..."
+          - sonar-scanner -Dsonar.login=$SONAR_TOKEN -Dsonar.host.url=$SONAR_HOST_URL
           - pipe: sonarsource/sonarcloud-scan:1.2.2
           # variables:
           #- sonar-scanner -Dsonar.login="balaji.cs03@reva.edu.in" -Dsonar.host.url="http://182.73.155.42:9000" -Dsonar.password="balajireva123!"
