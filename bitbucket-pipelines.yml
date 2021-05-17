@@ -19,6 +19,9 @@ pipelines:
           name: 'Security scan'
           script:
             - echo "Your security scan goes here..."
+            - pipe: sonarsource/sonarcloud-scan:1.2.2
+             variables:
+               DEBUG: "true"
 
     # The following deployment steps will be executed for each pipeline run. To configure your steps and conditionally deploy see https://support.atlassian.com/bitbucket-cloud/docs/configure-bitbucket-pipelinesyml/
     - step:
@@ -33,10 +36,10 @@ pipelines:
         script:
           - echo "Your deployment to production script goes here..."
           #- sonar-scanner -Dsonar.login=$SONAR_TOKEN -Dsonar.host.url=$SONAR_HOST_URL
-          - pipe: sonarsource/sonarcloud-scan:1.2.2
+          
           # variables:
           #- sonar-scanner -Dsonar.login="balaji.cs03@reva.edu.in" -Dsonar.host.url="http://182.73.155.42:9000" -Dsonar.password="balajireva123!"
-          - sonar-scanner -Dsonar.projectKey=maity_running_on_balaji   -Dsonar.sources=.   -Dsonar.host.url=http://182.73.155.42:9000   -Dsonar.login=b11d49de1f8e2fbdf842193c3aa14a145c7a8588
+          #- sonar-scanner -Dsonar.projectKey=maity_running_on_balaji   -Dsonar.sources=.   -Dsonar.host.url=http://182.73.155.42:9000   -Dsonar.login=b11d49de1f8e2fbdf842193c3aa14a145c7a8588
           
         #- sonar-scanner.bat -D"sonar.projectKey=balajir" -D"sonar.sources=." -D"sonar.host.url=http://182.73.155.42:9000" -D"sonar.login=b47f748349a17eac7a3522051a9e29037bb4b55a"
  
