@@ -1,31 +1,51 @@
-# Template PHP Build
-
-# This template allows you to validate your PHP application.
-# The workflow allows running tests and code linting on the default branch.
-clone:
-  depth: full
+# This is an example Starter pipeline configuration
+# Use a skeleton to build, test and deploy using manual and parallel steps
+# -----
+# You can specify a custom docker image from Docker Hub as your build environment.
+image: atlassian/default-image:2
 
 pipelines:
-  branches:
-    '{master,develop}':
+  default:
+    - parallel:
       - step:
-          name: SonarQube analysis
-          image: sonarsource/sonar-scanner-cli:latest
-          caches:
-            - sonar
+          name: 'Build and Test'
           script:
-            - sonar-scanner
-
-  pull-requests:
-    '**':
+            - echo "Your build and test goes here..."
       - step:
-          name: SonarQube analysis
-          image: sonarsource/sonar-scanner-cli:latest
-          caches:
-            - sonar
+          name: 'Lint'
           script:
-            - sonar-scanner
+            - echo "Your linting goes here..."
+      - step:
+          name: 'Security scan'
+          script:
+            - echo "Your security scan goes here..."
 
-definitions:
-  caches:
-    sonar: /opt/sonar-scanner/.sonar
+    # The following deployment steps will be executed for each pipeline run. To configure your steps and conditionally deploy see https://support.atlassian.com/bitbucket-cloud/docs/configure-bitbucket-pipelinesyml/
+    - step:
+        name: 'Deployment to Staging'
+        deployment: staging
+        script:
+          - echo "Your deployment to staging script goes here..."
+    - step:
+        name: 'Deployment to Production'
+        deployment: production
+        trigger: 'manual'
+        script:
+          - echo "Your deployment to production script goes here..."
+          - pipe: sonarsource/sonarcloud-scan:1.2.2
+          # variables:
+          #- sonar-scanner -Dsonar.login="balaji.cs03@reva.edu.in" -Dsonar.host.url="http://182.73.155.42:9000" -Dsonar.password="balajireva123!"
+          - sonar-scanner -Dsonar.login=$SONAR_TOKEN -Dsonar.host.url=$SONAR_HOST_URL
+          
+        #- sonar-scanner.bat -D"sonar.projectKey=balajir" -D"sonar.sources=." -D"sonar.host.url=http://182.73.155.42:9000" -D"sonar.login=b47f748349a17eac7a3522051a9e29037bb4b55a"
+ 
+ # - sonar-scanner -Dsonar.login=$SONAR_TOKEN -Dsonar.host.url=$SONAR_HOST_URL
+ # - sonar-scanner -Dsonar.login='b47f748349a17eac7a3522051a9e29037bb4b55a'
+ #- sonar-scanner -Dsonar.login='b47f748349a17eac7a3522051a9e29037bb4b55a'
+ #Dsonar.host.url="http://182.73.155.42:9000'
+          
+        #   SONAR_TOKEN: 'b47f748349a17eac7a3522051a9e29037bb4b55a' 
+          # SONAR_HOST_URL: 'http://182.73.155.42:9000'
+          #   EXTRA_ARGS: '<string>'  # Optional
+          #   SONAR_SCANNER_OPTS: '<string>'  # Optional
+          #   DEBUG: '<boolean>'  # Optional
