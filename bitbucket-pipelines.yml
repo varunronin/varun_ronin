@@ -2,24 +2,30 @@
 
 # This template allows you to validate your PHP application.
 # The workflow allows running tests and code linting on the default branch.
-
-image: composer:2.0
-
+clone:
+  depth: full
 
 pipelines:
-  default:
-    - parallel:
-        - step:
-            name: Test
-            script:
-              - composer install
-              -  ./vendor/bin/phpunit test
-            caches:
-              - composer
-        - step:
-            name: Lint
-            script:
-              - composer install
-              - ./vendor/bin/phplint . --exclude=vendor
-            caches:
-              - composer
+  branches:
+    '{master,develop}':
+      - step:
+          name: SonarQube analysis
+          image: sonarsource/sonar-scanner-cli:latest
+          caches:
+            - sonar
+          script:
+            - sonar-scanner
+
+  pull-requests:
+    '**':
+      - step:
+          name: SonarQube analysis
+          image: sonarsource/sonar-scanner-cli:latest
+          caches:
+            - sonar
+          script:
+            - sonar-scanner
+
+definitions:
+  caches:
+    sonar: /opt/sonar-scanner/.sonar
